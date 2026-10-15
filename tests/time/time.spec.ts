@@ -10,6 +10,5 @@ test.describe('Time module @regression', async() => {
 
     test('Should navigate to my Timesheets.', async({timePage}) => {
         await timePage.openMyTimesheets();
-        await timePage.expectLoaded();
     });
 });

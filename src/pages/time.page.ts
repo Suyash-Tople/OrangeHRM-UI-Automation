@@ -4,28 +4,19 @@ import { MainMenu } from '../components/main-menu.component'
 export class TimePage{
     readonly menu: MainMenu;
     readonly page: Page;
-    readonly timesheetsLink: Locator;
     readonly attendanceLink: Locator;
-    readonly mytimesheetsLink: Locator;
+    readonly myRecords: Locator;
+    readonly myRecordsPageHeading: Locator;
 
     constructor(page: Page){
         this.page = page;
         this.menu = new MainMenu(page);
         
-        this.timesheetsLink = page.getByRole('link', {
-            name: 'Timesheets',
-            exact: true
-        });
+        this.attendanceLink = page.getByText('Attendance');
 
-        this.attendanceLink = page.getByRole('link', {
-            name: 'Attendance',
-            exact: true
-        });
+        this.myRecords = page.getByRole('menuitem', { name: 'My Records' });
 
-        this.mytimesheetsLink = page.getByRole('link', {
-            name:'My Timesheets',
-            exact:true
-        });
+        this.myRecordsPageHeading = page.getByRole('heading', { name: 'My Attendance Records' });
     }
 
     async goto(): Promise<void> {
@@ -34,7 +25,9 @@ export class TimePage{
 
     async openMyTimesheets(): Promise<void>{
         await this.goto();
-        await this.mytimesheetsLink.click();
+        await this.attendanceLink.click();
+        await this.myRecords.click();
+        await expect(this.myRecordsPageHeading).toBeVisible();
     }
 
     async expectLoaded(): Promise<void>{

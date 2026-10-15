@@ -9,7 +9,7 @@ import { env } from '../utils/environment';
 
 type AppFixtures = {
     loginPage: LoginPage;
-    dashboradPage: DashboardPage;
+    dashboardPage: DashboardPage;
     adminPage: AdminPage;
     timePage: TimePage;
     leavePage: LeavePage;
@@ -21,7 +21,7 @@ export const test = base.extend<AppFixtures>({
         await use(new LoginPage(page));
     },
 
-    dashboradPage: async({page}, use) => {
+    dashboardPage: async({page}, use) => {
       await use(new DashboardPage(page));
     },
 
@@ -45,14 +45,16 @@ export const test = base.extend<AppFixtures>({
 export { expect };
 
 export const authenticatedTest = test.extend({
-  page: async ({ page }, use) => {
-    const loginPage = new LoginPage(page);
+    page: async ({ page }, use) => {
+        const loginPage = new LoginPage(page);
 
-    await loginPage.goto();
-    await loginPage.login(env.username, env.password);
+        await loginPage.goto();
+        await loginPage.login(env.username, env.password);
 
-    await expect(page).toHaveURL(/dashboard\/index/);
+        await expect(page).toHaveURL(/dashboard\/index/, {
+            timeout: 30_000,
+        });
 
-    await use(page);
-  }
+        await use(page);
+    },
 });

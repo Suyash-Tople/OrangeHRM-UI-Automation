@@ -1,3 +1,4 @@
+import { setTimeout } from 'timers';
 import {test, expect} from '../../src/fixtures/test.fixture'
 import { env } from '../../src/utils/environment'
 
@@ -16,7 +17,7 @@ test.describe('Authentication', () => {
         await loginPage.goto();
         await loginPage.login('invalid_user', 'invalid_password');
 
-        await expect(loginPage.errorMessage).toBeVisible();
+        await expect(page.getByText('Invalid credentials')).toBeVisible();
         await expect(page).toHaveURL(/auth\/login/);
     });
 });

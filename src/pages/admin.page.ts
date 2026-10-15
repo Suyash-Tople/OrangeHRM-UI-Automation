@@ -13,9 +13,7 @@ export class AdminPage{
         this.page = page;
         this.menu = new MainMenu(page);
 
-        this.userNameInput = page.getByRole('textbox', {
-            name: /username/i
-        });
+        this.userNameInput = page.getByRole('textbox').nth(1)
 
         this.searchButton = page.getByRole('button', {
             name: 'Search',

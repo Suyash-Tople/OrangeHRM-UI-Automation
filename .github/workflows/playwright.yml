@@ -11,6 +11,11 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
+    env:
+      ORANGE_USERNAME: ${{ secrets.ORANGE_USERNAME }}
+      ORANGE_PASSWORD: ${{ secrets.ORANGE_PASSWORD }}
+      Base_URL: https://opensource-demo-orangehrmlive.com
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

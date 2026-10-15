@@ -1,4 +1,4 @@
-name: Playwright API Automation Regression
+name: Playwright UI Automation
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main, master]
 
 jobs:
-  api-tests:
+  orangehrm-ui-tests:
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
@@ -15,7 +15,7 @@ jobs:
       ORANGE_USERNAME: ${{ secrets.ORANGE_USERNAME }}
       ORANGE_PASSWORD: ${{ secrets.ORANGE_PASSWORD }}
       Base_URL: https://opensource-demo-orangehrmlive.com
-      
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

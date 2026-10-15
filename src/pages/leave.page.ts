@@ -44,10 +44,10 @@ export class LeavePage {
     }
     
     async expectApplypage(): Promise<void> {
-        await expect(this.page).toHaveURL(/leave\/applyleave/);
+        await expect(this.page).toHaveURL(/leave\/applyLeave/);
         await expect(
             this.page.getByRole('heading',{
-                name: 'Apply leave',
+                name: 'Apply Leave',
                 exact: true
             })
         ).toBeVisible();

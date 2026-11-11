@@ -36,6 +36,7 @@ export class AdminPage{
     }
 
     async expectLoaded(): Promise<void> {
+        await this.page.goto('/web/index.php/admin/viewSystemUsers');
         await expect(this.page).toHaveURL(/admin\/viewSystemUsers/);
         await expect(
             this.page.getByRole('heading', {

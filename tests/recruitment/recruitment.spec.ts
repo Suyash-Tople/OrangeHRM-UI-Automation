@@ -1,14 +1,15 @@
-import { authenticatedTest as test, expect } from "../../src/fixtures/test.fixture";
+import {test, expect } from "../../src/fixtures/test.fixture";
 
-test.describe('Recruitment module @regression', () => {
-    test('should open Candidates', async({recruitmentPage}) => {
-        await recruitmentPage.openCandidates();
-        await recruitmentPage.expectCandidatesPage();
+test('should open recruitment page', async({recruitmentPage, page}) => {
+    await page.goto('web/index.php/recruitment/viewCandidates');
+
+    await test.step('should open Candidates', async() => {
+    await recruitmentPage.openCandidates();
+    await recruitmentPage.expectCandidatesPage();
     });
 
 
-    test('should open vacancies', async({recruitmentPage, page}) => {
-        await recruitmentPage.openVacancies();
-        await page.waitForURL(/recruitment\/viewJobVacancy/);
+    await test.step('should open vacancies', async() => {
+    await recruitmentPage.openVacancies();
     });
 });

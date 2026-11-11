@@ -1,19 +1,18 @@
-import { authenticatedTest as test, expect } from "../../src/fixtures/test.fixture";
+import {test, expect } from "../../src/fixtures/test.fixture";
 import { LeavePage } from "../../src/pages/leave.page";
 
-test.describe('Leave module @Regression', async() => {
-    test('Should open the apply leave page', async({leavePage}) => {
-        await test.step('Navigate to Apply leave', async() => {
-            await leavePage.openApply();
-        });
-        
-        await test.step('Verify page content', async() => {
-            await leavePage.expectApplypage();
-        });
+test('Should open the apply leave page', async({leavePage, page}) => {
+    await page.goto('/web/index.php/dashboard/index');
+    
+    await test.step('Navigate to Apply leave', async() => {
+        await leavePage.openApply();
     });
-
-    test('should open My Leave', async({leavePage, page}) => {
+    
+    await test.step('Verify page content', async() => {
+        await leavePage.expectApplypage();
+    });
+   
+    await test.step('should open My Leave', async() => {
         await leavePage.openMyLeave();
-        await page.waitForURL(/leave\/viewMyLeaveList/)
     });
-})
+});

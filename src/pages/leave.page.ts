@@ -22,7 +22,7 @@ export class LeavePage {
             name: 'My Leave',
             exact: true
         });
-
+        
         this.leaveListLink = page.getByRole('link', {
             name: 'Leave List',
             exact: true
@@ -31,6 +31,13 @@ export class LeavePage {
 
     async goto(): Promise<void>{
         await this.menu.navigateTo('Leave');
+
+        await expect(
+            this.page.getByRole('heading', {
+                name: 'Leave',
+                exact: true
+            })
+        ).toBeVisible();
     }
 
     async openApply(): Promise<void>{
@@ -39,6 +46,7 @@ export class LeavePage {
     }
 
     async openMyLeave(): Promise<void> {
+        await expect(this.myLeaveLink).toBeVisible();
         await this.goto();
         await this.myLeaveLink.click();
     }

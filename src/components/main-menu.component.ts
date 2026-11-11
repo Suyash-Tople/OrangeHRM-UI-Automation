@@ -63,6 +63,8 @@ export class MainMenu{
       Recruitment: this.recruitment
     };
 
-    await expect(menuItems[module]).toBeVisible();
+    const selectedMenu = menuItems[module];
+    await expect(selectedMenu).toBeVisible();
+    await selectedMenu.click();
   }
 }

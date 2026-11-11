@@ -27,6 +27,12 @@ export class RecruitmentPage{
 
     async goto(): Promise<void>{
         await this.menu.navigateTo('Recruitment');
+         await expect(
+            this.page.getByRole('heading', {
+                name: 'Recruitment',
+                exact: true
+            })
+        ).toBeVisible();
     }
 
     async openCandidates(): Promise<void>{

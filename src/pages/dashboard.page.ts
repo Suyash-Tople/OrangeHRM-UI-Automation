@@ -11,6 +11,8 @@ export class DashboardPage{
     }
 
     async expectLoaded(): Promise<void>{
+        await this.page.goto('/web/index.php/dashboard/index');
+        
         await expect(this.page).toHaveURL(/dashboard\/index/);
 
         await expect(

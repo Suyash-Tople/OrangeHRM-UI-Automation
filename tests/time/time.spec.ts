@@ -1,14 +1,14 @@
-import { time } from "node:console";
-import { authenticatedTest as test, expect } from "../../src/fixtures/test.fixture";
-import { TimePage } from "../../src/pages/time.page";
+import {test, expect } from "../../src/fixtures/test.fixture";
 
-test.describe('Time module @regression', async() => {
-    test('should open time module', async({timePage}) => {
+test('should open time module', async({timePage, page}) => {
+    await page.goto('/web/index.php/time/viewEmployeeTimesheet');
+
+    await test.step('should open time module', async() => {
         await timePage.goto();
         await expect(timePage.page).toHaveURL(/time\//);
     });
 
-    test('Should navigate to my Timesheets.', async({timePage}) => {
+    await test.step('Should navigate to my Timesheets.', async() => {
         await timePage.openMyTimesheets();
     });
 });
